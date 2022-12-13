@@ -84,21 +84,22 @@ public class FirstPersonController : MonoBehaviour
             if (characterController.isGrounded)
             {
                 moveDirection.y = jumpForce;
-                canDoubleJump= true;
+                canDoubleJump = true;
             }
-            else if(canDoubleJump)
+            else if (canDoubleJump == true && Input.GetKeyDown(jumpKey))
             {
                 moveDirection.y = jumpForce;
-                
+                canDoubleJump = false;
             }
         }
     }
 
     private void ApplyFinalMovements()
     {
-        if(!characterController.isGrounded) 
-        moveDirection.y -= gravity * Time.deltaTime;
-
+        if (!characterController.isGrounded)
+        {
+            moveDirection.y -= gravity * Time.deltaTime;
+        }
         characterController.Move(moveDirection * Time.deltaTime);     
     }
 }
