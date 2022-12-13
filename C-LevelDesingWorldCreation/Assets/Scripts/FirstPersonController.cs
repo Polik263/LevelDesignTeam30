@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,22 @@ public class FirstPersonController : MonoBehaviour
     private bool isSprinting => canSprint && Input.GetKey(sprintKey);
     private bool shouldJump => Input.GetKey(jumpKey) && characterController.isGrounded || Input.GetKey(jumpKey) && canDoubleJump == true;
     public bool canDoubleJump;
+
+    Animator animator1;
+    Animator animator2;
+    Animator animator3;
+
+    Animator animator4;
+    Animator animator5;
+    Animator animator6;
+
+    public GameObject movingWall1;
+    public GameObject movingWall2;
+    public GameObject movingWall3;
+
+    public GameObject movingWall4;
+    public GameObject movingWall5;
+    public GameObject movingWall6;
 
 
 
@@ -54,7 +71,7 @@ public class FirstPersonController : MonoBehaviour
             HandleMovementInput();
             HandleMouseLook();
 
-            if(canJump)
+            if (canJump)
                 HandleJump();
 
             ApplyFinalMovements();
@@ -101,7 +118,7 @@ public class FirstPersonController : MonoBehaviour
         {
             moveDirection.y -= gravity * Time.deltaTime;
         }
-        characterController.Move(moveDirection * Time.deltaTime);     
+        characterController.Move(moveDirection * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -111,6 +128,44 @@ public class FirstPersonController : MonoBehaviour
             Debug.Log("Hit");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-    }
 
+        else if (other.CompareTag("Floor"))
+        {
+
+                    Debug.Log("Hit");
+                    Destroy(GameObject.FindGameObjectWithTag("Door"));
+                
+        }
+
+        else if (other.CompareTag("movingWallStart"))
+        {
+            Debug.Log("WallIsMoving");
+            animator1 = movingWall1.GetComponent<Animator>();
+            animator2 = movingWall2.GetComponent<Animator>();
+            animator3 = movingWall3.GetComponent<Animator>();
+
+
+
+            animator1.enabled= true;
+            animator2.enabled= true;
+            animator3.enabled= true;
+
+
+        }
+
+        else if (other.CompareTag("movingWallNext"))
+        {
+            animator4 = movingWall4.GetComponent<Animator>();
+            animator5 = movingWall5.GetComponent<Animator>();
+            animator6 = movingWall6.GetComponent<Animator>();
+
+            animator4.enabled = true;
+            animator5.enabled = true;
+            animator6.enabled = true;
+        }
+    }
 }
+
+
+
+

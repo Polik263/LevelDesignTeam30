@@ -8,6 +8,10 @@ TagManager:
   - greenTag
   - redTag
   - Spike
+  - Door
+  - Floor
+  - movingWallStart
+  - movingWallNext
   layers:
   - Default
   - TransparentFX
