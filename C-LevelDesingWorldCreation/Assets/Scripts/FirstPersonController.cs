@@ -104,13 +104,13 @@ public class FirstPersonController : MonoBehaviour
         characterController.Move(moveDirection * Time.deltaTime);     
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Spike")
+        if (other.CompareTag("Spike"))
         {
             Debug.Log("Hit");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-
     }
+
 }
