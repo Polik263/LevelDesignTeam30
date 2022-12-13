@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class AutoDestroy : MonoBehaviour
 {
-    public float delay = 0f;
+    [SerializeField] private GameObject nextWall;
+    public float delay = 5f;
 
-    // Use this for initialization
-    void Start()
+
+    private void Start()
     {
-        Destroy(gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length + delay);
+        StartCoroutine(HideObject());
+    }
+
+
+    IEnumerator HideObject()
+    {
+        yield return new WaitForSeconds(delay);
+
+        nextWall.SetActive(true);
     }
 }
