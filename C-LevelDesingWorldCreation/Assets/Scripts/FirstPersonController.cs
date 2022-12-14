@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class FirstPersonController : MonoBehaviour
 {
+    private Vector3 respawnPoint;
+
     public bool canMove { get; private set; } = true;
     private bool isSprinting => canSprint && Input.GetKey(sprintKey);
     private bool shouldJump => Input.GetKey(jumpKey) && characterController.isGrounded || Input.GetKey(jumpKey) && canDoubleJump == true;
@@ -64,6 +66,11 @@ public class FirstPersonController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    private void Start()
+    {
+        respawnPoint = transform.position;
     }
 
     private void Update()
@@ -133,7 +140,14 @@ public class FirstPersonController : MonoBehaviour
         if (other.CompareTag("Spike"))
         {
             Debug.Log("Hit");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            transform.position = respawnPoint;
+        }
+
+        else if(other.CompareTag("checkPoint"))
+            
+        {
+            Debug.Log("Checkpoint");
+            respawnPoint = transform.position;
         }
 
         else if (other.CompareTag("Floor"))
