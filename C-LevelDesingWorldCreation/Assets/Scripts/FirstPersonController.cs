@@ -78,6 +78,11 @@ public class FirstPersonController : MonoBehaviour
 
             ApplyFinalMovements();
         }
+
+        if (Input.GetKeyDown("r") && winScreen.activeInHierarchy == true)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     private void HandleMovementInput()
