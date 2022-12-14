@@ -12,6 +12,7 @@ TagManager:
   - Floor
   - movingWallStart
   - movingWallNext
+  - cheese
   layers:
   - Default
   - TransparentFX

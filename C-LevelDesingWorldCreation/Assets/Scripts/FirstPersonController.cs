@@ -19,6 +19,8 @@ public class FirstPersonController : MonoBehaviour
     Animator animator5;
     Animator animator6;
 
+    public GameObject winScreen;
+
     public GameObject movingWall1;
     public GameObject movingWall2;
     public GameObject movingWall3;
@@ -162,6 +164,13 @@ public class FirstPersonController : MonoBehaviour
             animator4.enabled = true;
             animator5.enabled = true;
             animator6.enabled = true;
+        }
+
+        else if (other.CompareTag("cheese"))
+        {
+            Debug.Log("trigger");
+            winScreen.SetActive(true);
+            canMove = false;
         }
     }
 }
