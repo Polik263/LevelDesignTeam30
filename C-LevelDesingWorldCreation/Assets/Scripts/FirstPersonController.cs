@@ -137,7 +137,13 @@ public class FirstPersonController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Spike"))
+        if (other.CompareTag("Spike1"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        }
+
+        else if (other.CompareTag("Spike"))
         {
             Debug.Log("Hit");
             transform.position = respawnPoint;
