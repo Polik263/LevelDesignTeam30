@@ -31,8 +31,6 @@ public class FirstPersonController : MonoBehaviour
     public GameObject movingWall5;
     public GameObject movingWall6;
 
-
-
     [SerializeField] private bool canSprint = true;
     [SerializeField] private bool canJump = true;
 
@@ -132,6 +130,7 @@ public class FirstPersonController : MonoBehaviour
         {
             moveDirection.y -= gravity * Time.deltaTime;
         }
+        
         characterController.Move(moveDirection * Time.deltaTime);
     }
 
@@ -196,6 +195,18 @@ public class FirstPersonController : MonoBehaviour
             Debug.Log("trigger");
             winScreen.SetActive(true);
             canMove = false;
+        }
+
+        else if (other.CompareTag("GravityChange"))
+        {
+            Debug.Log("GravityChanged");
+
+            gravity = 10;
+        }
+
+        else if (other.CompareTag("GravityBack"))
+        {
+            gravity = 30;
         }
     }
 }
