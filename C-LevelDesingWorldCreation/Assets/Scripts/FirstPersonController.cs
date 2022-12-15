@@ -153,6 +153,7 @@ public class FirstPersonController : MonoBehaviour
         {
             Debug.Log("Checkpoint");
             respawnPoint = transform.position;
+            gravity = 30;
         }
 
         else if (other.CompareTag("Floor"))
